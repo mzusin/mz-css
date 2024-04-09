@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Simple Rectangular Tooltip</title>
+
+        <style>
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: grid;
+                place-content: center;
+                grid-template-columns: auto auto;
+                gap: 3rem;
+                text-align: center;
+                background: #f2f2f2;
+            }
+
+            .tooltip {
+                --base: 2em;
+                --height: 1em;
+                --color: #CC333F;
+                --tail-position: 50%;
+                --tail-skew: 2rem;
+
+                border-image: fill 0//var(--height) conic-gradient(var(--color, #CC333F) 0 0); /* ? */
+                color: #fff;
+                font-size: 1rem;
+                font-weight: 500;
+                font-family: sans-serif;
+                padding: 1rem;
+                max-width: 25ch; /* ? */
+            }
+
+            .bottom {
+                --x1: 0;
+                --y1: 100%;
+                --x2: 0;
+                --y2: 0;
+                --x3: 100%;
+                --y3: 0;
+                --x4: 100%;
+                --y4: 100%;
+                --x5: min(100%, calc(var(--tail-position) + var(--base)/2));
+                --y5: 100%;
+                --x6: var(--tail-position);
+                --y6: calc(100% + var(--height));
+                --x7: max(0%, calc(var(--tail-position) - var(--base)/2));
+                --y7: 100%;
+
+                clip-path:
+                        polygon(
+                                var(--x1) var(--y1),
+                                var(--x2) var(--y2),
+                                var(--x3) var(--y3),
+                                var(--x4) var(--y4),
+                                var(--x5) var(--y5),
+                                var(--x6) var(--y6),
+                                var(--x7) var(--y7)
+                        );
+            }
+
+            .top {
+                --x1: 0;
+                --y1: 0;
+                --x2: 0;
+                --y2: 100%;
+                --x3: 100%;
+                --y3: 100%;
+                --x4: 100%;
+                --y4: 0;
+                --x5: min(100%, calc(var(--tail-position) + var(--base)/2));
+                --y5: 0;
+                --x6: var(--tail-position);
+                --y6: calc(-1*var(--height));
+                --x7: max(0%, calc(var(--tail-position) - var(--base)/2));
+                --y7: 0;
+
+                clip-path:
+                        polygon(
+                                var(--x1) var(--y1),
+                                var(--x2) var(--y2),
+                                var(--x3) var(--y3),
+                                var(--x4) var(--y4),
+                                var(--x5) var(--y5),
+                                var(--x6) var(--y6),
+                                var(--x7) var(--y7)
+                        );
+            }
+
+            .right {
+                --x1: 100%;
+                --y1: 100%;
+                --x2: 0;
+                --y2: 100%;
+                --x3: 0;
+                --y3: 0;
+                --x4: 100%;
+                --y4: 0;
+                --x5: 100%;
+                --y5: max(0%, calc(var(--tail-position) - var(--base)/2));
+                --x6: calc(100% + var(--height));
+                --y6: var(--tail-position);
+                --x7: 100%;
+                --y7: min(100%, calc(var(--tail-position) + var(--base)/2));
+
+                clip-path:
+                        polygon(
+                                var(--x1) var(--y1),
+                                var(--x2) var(--y2),
+                                var(--x3) var(--y3),
+                                var(--x4) var(--y4),
+                                var(--x5) var(--y5),
+                                var(--x6) var(--y6),
+                                var(--x7) var(--y7)
+                        );
+            }
+
+            .left {
+                --x1: 0;
+                --y1: 100%;
+                --x2: 100%;
+                --y2: 100%;
+                --x3: 100%;
+                --y3: 0;
+                --x4: 0;
+                --y4: 0;
+                --x5: 0;
+                --y5: max(0%, calc(var(--tail-position) - var(--base)/2));
+                --x6: calc(-1*var(--height));
+                --y6: var(--tail-position);
+                --x7: 0;
+                --y7: min(100%, calc(var(--tail-position) + var(--base)/2));
+
+                clip-path:
+                        polygon(
+                                var(--x1) var(--y1),
+                                var(--x2) var(--y2),
+                                var(--x3) var(--y3),
+                                var(--x4) var(--y4),
+                                var(--x5) var(--y5),
+                                var(--x6) var(--y6),
+                                var(--x7) var(--y7)
+                        );
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="tooltip top" style="--color: #79bd9a;">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip right" style="--color: #8a9b0f;">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip left" style="--color: #eb6841;">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip bottom">This is a simple Tooltip with a solid coloration and without border radius</div>
+
+        <div class="tooltip top" style="--color: #79bd9a; --tail-position: 0%">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip right" style="--color: #8a9b0f; --tail-position: 30%">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip left" style="--color: #eb6841; --tail-position: 30%">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip bottom" style="--color: #eb6841; --tail-position: 100%">This is a simple Tooltip with a solid coloration and without border radius</div>
+
+        <a href="https://css-tip.com/simple-tooltip/">Source</a>
+    </body>
+</html>
