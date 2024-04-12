@@ -20,11 +20,12 @@
             .tooltip {
                 --base: 2em;
                 --height: 1em;
-                --color: #CC333F;
+                --color1: #CC333F;
+                --color2: #b90a18;
                 --tail-position: 50%;
-                --tail-skew: 2rem;
+                --tail-skew: 0rem;
 
-                border-image: fill 0//var(--height) conic-gradient(var(--color, #CC333F) 0 0); /* ? */
+                border-image: fill 0//0 0 var(--height) 0 linear-gradient(45deg, var(--color1, #efefef) ,var(--color2, #efefef)); /* ? */
                 color: #fff;
                 font-size: 1rem;
                 font-weight: 500;
@@ -44,7 +45,7 @@
                 --y4: 100%;
                 --x5: min(100%, calc(var(--tail-position) + var(--base)/2));
                 --y5: 100%;
-                --x6: var(--tail-position);
+                --x6: calc(var(--tail-position) + var(--tail-skew));
                 --y6: calc(100% + var(--height));
                 --x7: max(0%, calc(var(--tail-position) - var(--base)/2));
                 --y7: 100%;
@@ -72,7 +73,7 @@
                 --y4: 0;
                 --x5: min(100%, calc(var(--tail-position) + var(--base)/2));
                 --y5: 0;
-                --x6: var(--tail-position);
+                --x6: calc(var(--tail-position) + var(--tail-skew));
                 --y6: calc(-1*var(--height));
                 --x7: max(0%, calc(var(--tail-position) - var(--base)/2));
                 --y7: 0;
@@ -101,7 +102,7 @@
                 --x5: 100%;
                 --y5: max(0%, calc(var(--tail-position) - var(--base)/2));
                 --x6: calc(100% + var(--height));
-                --y6: var(--tail-position);
+                --y6: calc(var(--tail-position) + var(--tail-skew));
                 --x7: 100%;
                 --y7: min(100%, calc(var(--tail-position) + var(--base)/2));
 
@@ -129,7 +130,7 @@
                 --x5: 0;
                 --y5: max(0%, calc(var(--tail-position) - var(--base)/2));
                 --x6: calc(-1*var(--height));
-                --y6: var(--tail-position);
+                --y6: calc(var(--tail-position) + var(--tail-skew));
                 --x7: 0;
                 --y7: min(100%, calc(var(--tail-position) + var(--base)/2));
 
@@ -151,15 +152,20 @@
     </head>
     <body>
 
-        <div class="tooltip top" style="--color: #79bd9a;">This is a simple Tooltip with a solid coloration and without border radius</div>
-        <div class="tooltip right" style="--color: #8a9b0f;">This is a simple Tooltip with a solid coloration and without border radius</div>
-        <div class="tooltip left" style="--color: #eb6841;">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip top" style="--color1: #79bd9a; --color2: #3b7c7a;">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip right" style="--color1: #8a9b0f; --color2: #3b7c7a">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip left" style="--color1: #eb6841;">This is a simple Tooltip with a solid coloration and without border radius</div>
         <div class="tooltip bottom">This is a simple Tooltip with a solid coloration and without border radius</div>
 
-        <div class="tooltip top" style="--color: #79bd9a; --tail-position: 0%">This is a simple Tooltip with a solid coloration and without border radius</div>
-        <div class="tooltip right" style="--color: #8a9b0f; --tail-position: 30%">This is a simple Tooltip with a solid coloration and without border radius</div>
-        <div class="tooltip left" style="--color: #eb6841; --tail-position: 30%">This is a simple Tooltip with a solid coloration and without border radius</div>
-        <div class="tooltip bottom" style="--color: #eb6841; --tail-position: 100%">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip top" style="--color1: #79bd9a; --color2: #3b7c7a; --tail-position: 0%">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip right" style="--color1: #8a9b0f; --color2: #3b7c7a; --tail-position: 30%">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip left" style="--color1: #eb6841; --color2: #ff0000; --tail-position: 30%">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip bottom" style="--color1: #eb6841; --color2: #ff0000; --tail-position: 100%">This is a simple Tooltip with a solid coloration and without border radius</div>
+
+        <div class="tooltip top" style="--color1: #79bd9a; --color2: #3b7c7a; --tail-skew: 2rem;">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip right" style="--color1: #8a9b0f; --color2: #3b7c7a; --tail-skew: 1rem;">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip left" style="--color1: #eb6841; --color2: #ec9f3a; --tail-skew: 1rem;">This is a simple Tooltip with a solid coloration and without border radius</div>
+        <div class="tooltip bottom" style="--color1: #eb6841; --color2: #ff0000; --tail-skew: 2rem;">This is a simple Tooltip with a solid coloration and without border radius</div>
 
         <a href="https://css-tip.com/simple-tooltip/">Source</a>
     </body>
